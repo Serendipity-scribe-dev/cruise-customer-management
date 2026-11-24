@@ -191,11 +191,10 @@ cruise-crm/
 ---
 
 ## Environment Variables
-
-All are optional. Copy `.env.example` to `.env` to get started.
+Copy `.env.example` to `.env` to get started.
 
 | Variable | Description |
-
+|----------|-------------|
 | `DATABASE_URL` | PostgreSQL connection string. When set, data is persisted across restarts. |
 
 ---
