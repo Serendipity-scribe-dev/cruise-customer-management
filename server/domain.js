@@ -241,10 +241,14 @@ export function queryCustomers(customers, q = {}) {
   };
   const get = keys[q.sort] || keys.name;
   rows = [...rows].sort((a, b) => {
-    const x = get(a), y = get(b);
-    return (x < y ? -1 : x > y ? 1 : 0) * dir || a.name.localeCompare(b.name);
-  });
+  const x = get(a), y = get(b);
 
+  if (q.sort === "created") {
+    return (x < y ? -1 : x > y ? 1 : 0) * dir || (b.id - a.id);
+  }
+
+  return (x < y ? -1 : x > y ? 1 : 0) * dir || a.name.localeCompare(b.name);
+});
   const pageSize = Math.min(50, Math.max(1, parseInt(q.pageSize, 10) || 8));
   const pages = Math.max(1, Math.ceil(rows.length / pageSize));
   const page = Math.min(pages, Math.max(1, parseInt(q.page, 10) || 1));

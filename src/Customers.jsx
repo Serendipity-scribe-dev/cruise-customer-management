@@ -14,7 +14,7 @@ const VIEWS = [
 ];
 
 export default function Customers({ user }) {
-  const [params, setParams] = useState({ q: "", view: "all", sort: "name", dir: "asc", page: 1 });
+  const [params, setParams] = useState({ q: "", view: "all", sort: "created", dir: "desc", page: 1 });
   const [data, setData] = useState(null);
   const [meta, setMeta] = useState(null);
   const [loading, setLoading] = useState(true);
