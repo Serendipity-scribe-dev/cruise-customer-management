@@ -47,6 +47,15 @@ export function createApp(store = createDefaultStore()) {
   }
   const money = (n) => "$" + n.toLocaleString("en-US");
 
+  // ---------- health check ----------
+  app.get("/api/health", (req, res) => {
+    res.json({
+      success: true,
+      storage: store.kind,
+      databaseConnected: store.kind === "postgres"
+    });
+  });
+
   /* ---------- public ---------- */
   app.post("/api/login", h(async (req, res) => {
     const out = login(req.body?.username, req.body?.password);
