@@ -2,8 +2,6 @@
 
 A customer relationship management system built for cruise booking agencies. Track customers, manage bookings across multiple sailings, record payments, and monitor passport compliance — all in one place.
 
-**Tech stack:** React 18 · Vite · Node.js · Express 4 · PostgreSQL (optional)
-
 ---
 
 ## Table of Contents
@@ -176,7 +174,6 @@ cruise-crm/
 │   ├── Profile.jsx           # Customer detail drawer, booking cards, modals
 │   ├── CustomerForm.jsx      # Create / edit customer modal
 │   ├── Audit.jsx             # Global audit log page
-│   ├── Login.jsx             # Login page (currently bypassed)
 │   ├── api.js                # Frontend API client (fetch wrapper)
 │   ├── ui.jsx                # Shared UI components (Drawer, Modal, Badge)
 │   ├── utils.js              # Date formatting, currency, helpers
@@ -193,27 +190,13 @@ cruise-crm/
 
 ---
 
-## Deployment (Vercel)
-
-1. Push the repo to GitHub.
-2. Import the repository in [Vercel](https://vercel.com) and deploy — the defaults work out of the box.
-3. **Add a database (recommended):** Go to Project → Storage → add a Neon Postgres database. This sets the `DATABASE_URL` environment variable automatically. Redeploy. Tables are created and seeded on the first request.
-
-> Without `DATABASE_URL`, the app falls back to an in-memory store seeded with demo data. The data resets on every restart and may differ between serverless instances, so use it for demos only.
-
----
-
 ## Environment Variables
 
 All are optional. Copy `.env.example` to `.env` to get started.
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `DATABASE_URL` | *(none — uses in-memory store)* | PostgreSQL connection string. When set, data is persisted across restarts. |
-| `AUTH_SECRET` | `dev-only-secret-change-me` | Secret for signing HMAC-SHA256 tokens. Change this in production. |
-| `ADMIN_PASSWORD` | `admin123` | Password for the admin account. |
-| `AGENT_PASSWORD` | `agent123` | Password for the agent account. |
-| `PORT` | `3001` | Port the API server listens on (local dev only). |
+| Variable | Description |
+
+| `DATABASE_URL` | PostgreSQL connection string. When set, data is persisted across restarts. |
 
 ---
 
@@ -225,6 +208,5 @@ All are optional. Copy `.env.example` to `.env` to get started.
 
 - **Last write wins** — Concurrent edits to the same customer use a simple last-write-wins strategy. Fine for a small team; a version column would add optimistic concurrency for more users.
 
-- **Demo data stays fresh** — Sailing dates and seed data are generated relative to today, so the demo never goes stale.
 
-- **Not included yet:** password hashing and user management (users come from env vars), login rate limiting, refunds, email notifications, and UI tests.
+
